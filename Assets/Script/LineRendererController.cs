@@ -17,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
                 if (lineRenderers[i].positionCount >= 2)
                 {
                     lineRenderers[i].SetPosition(0, startpos.position);
-                    lineRenderers.[i].SetPosition(1, endpos.position);  
+                    lineRenderers[i].SetPosition(1, endpos.position);  
                 }
             }
         }

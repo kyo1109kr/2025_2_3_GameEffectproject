@@ -75,11 +75,11 @@ public class ChainShoot : MonoBehaviour
 
     IEnumerator ChainReaction(GameObject closestEnemey)
     {
-        yield return new WaitForSeconds(delayBetWeenEachChain)
+        yield return new WaitForSeconds(delayBetweenEachChain);
            
         if(counter == maximunEnemieslnChain)
         {
-            yield return null
+            yield return null;
         }
         else
         {
@@ -98,9 +98,48 @@ public class ChainShoot : MonoBehaviour
         }
     }
 
-    //스타트 슈팅 합수 작성 하기 업데이트 키 설정도 하기
+    void StartShooting()
+    {
+        shooting = false;
+        shot = false;
+        counter = 1;
 
+        for(int i = 0; i < spawnedLineRenderers.Count; i++)
+        {
+            Destroy(spawnedLineRenderers[i]);
 
+        }
+        spawnedLineRenderers.Clear();
+        enemieslnChain.Clear();
 
+        for(int i = 0;i < activeEffect.Count; i++)
+        {
+            Destroy(activeEffect[i]);
+        }
 
+        activeEffect.Clear();
+    }
+
+    private void Update()
+    {
+        if(Input.GetButton("Fire1"))
+        {
+            if (playerEnemyDetector.GetEnemieslnRange().Count > 0)
+            {
+                if (!shooting)
+                {
+                    StartShooting();
+                }
+            }
+            else
+            {
+                StopShooting();
+            }
+        }
+        if (Input.GetButton("Fire1"))
+        {
+            StopShooting();
+        }
+    }
+    
 }
